@@ -8,11 +8,9 @@ const selected = document.getElementById('difficult');
 
 let pointCounter = document.getElementById('pointCounter');
 
-
 let playerScore=0;
 
 let disableButton = false;
-
 
 let numberInteraction;
 
@@ -22,15 +20,11 @@ let gridGeneral;
 
 let fullGrid;
 
-
 let bombArray=[];
 
 let bombCounter=16;
 
 let allBomb;
-
-
-
 
 
 play.addEventListener('click', function(){
@@ -50,9 +44,6 @@ play.addEventListener('click', function(){
 }
 )
 
-
-//funzioni
-
 //funzione per creare un nuovo quadrato
 
 function createSquare(){
@@ -61,7 +52,6 @@ function createSquare(){
 
     return currentElement;
 }
-
 
 //funzione di creazione completa della griglia per evitare ripetizione
 
@@ -74,7 +64,6 @@ function createFullGrid(){
         numberInteraction=81;
         classBox="box-2";
     
-        
     }else if(selected.value == "hard"){
         numberInteraction=49;
         classBox="box-3";
@@ -102,7 +91,9 @@ function general(numberInteraction,classBox){
                     pointCounter.innerHTML=`Partita conclusa con un punteggio di ${playerScore} punti!`;
                     disableButton=true;
                     for( let i = 1; i <= numberInteraction; i++){
-                        let doRed = document.querySelector(`.box:nth-of-type(${i})`);
+
+                        let doRed = document.querySelector(`.box:nth-child(${i})`);
+
                         if(bombArray.includes(i)){
                             doRed.classList.add('red');
                         }
@@ -117,31 +108,16 @@ function general(numberInteraction,classBox){
                     }else{
                         pointCounter.innerHTML=`Il tuo Punteggio è: ${playerScore}`;
                     }
-                
                 }
-
             }
-            
             console.log(`Hai scelto la casella: ${i}`);
         }
         )
-
-    
         containerDom.append(currentSquare);
-    
     }
-    
-
-
 }
 
-
-
-//funzione per mostrare tutte le bombe
-
-
 //funzione generatore bombe
-
 
 function bombGenerator(max,bombNumber){
 
@@ -152,7 +128,5 @@ function bombGenerator(max,bombNumber){
         if(bombArray[i] != bomb){
             bombArray.push(bomb);
         }
-
     }
-
 }
