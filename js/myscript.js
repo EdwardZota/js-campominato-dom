@@ -31,6 +31,8 @@ play.addEventListener('click', function(){
     title.classList.add('d-none');
     containerDom.classList.remove('d-none');
 
+    disableButton = false;
+
     containerDom.innerHTML="";
     bombArray=[];
 
