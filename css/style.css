@@ -57,8 +57,13 @@ main span{
     align-items: center;
     font-size: 40px;
     font-weight: bold;
+}
+#title{
     height: 100%;
-    
+}
+
+#pointerCounter{
+    height: 50px;
 }
 
 .container{
@@ -91,7 +96,6 @@ main span{
     height: calc(100% / 7);
     width: calc(100% / 7);
 }
-
 
 footer span{
     line-height: 80px;

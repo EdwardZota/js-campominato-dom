@@ -6,6 +6,10 @@ const title = document.getElementById('title');
 
 const selected = document.getElementById('difficult');
 
+let pointCounter = document.getElementById('pointCounter');
+
+let playerScore=0;
+
 
 let numberInteraction;
 
@@ -18,6 +22,8 @@ let fullGrid;
 
 let bombArray=[];
 
+let bombCounter=16
+
 let allBomb;
 
 
@@ -27,14 +33,15 @@ let allBomb;
 play.addEventListener('click', function(){
     title.classList.add('d-none');
 
-        containerDom.innerHTML="";
-        bombArray=[];
+    containerDom.innerHTML="";
+    bombArray=[];
 
-        fullGrid = createFullGrid();
+    fullGrid = createFullGrid();
 
-        allBomb = bombGenerator(numberInteraction,16);
-        console.log(`questo e l'elenco delle bombe in questa partita se vuoi vincere barando: ${bombArray}`);
-        
+    allBomb = bombGenerator(numberInteraction,bombCounter);
+    console.log(`questo e l'elenco delle bombe in questa partita se vuoi vincere barando: ${bombArray}`);
+    
+
 }
 )
 
@@ -47,9 +54,9 @@ function createSquare(){
      const currentElement = document.createElement('div');
     currentElement.classList.add('box');
 
-
     return currentElement;
 }
+
 
 //funzione di creazione completa della griglia per evitare ripetizione
 
@@ -86,9 +93,18 @@ function general(numberInteraction,classBox){
 
             if(bombArray.includes(i)){
                 this.classList.add('red');
+                pointCounter.innerHTML=`Partita conclusa con un punteggio di ${playerScore} punti!`;
 
             }else{
                 this.classList.add('cyan');
+                playerScore++;
+
+                if(playerScore == (numberInteraction - bombCounter)){
+                    pointCounter.innerHTML=`Complimenti! Hai vinto con il punteggio massimo in questa modalità con ${playerScore} punti!`;
+                }else{
+                    pointCounter.innerHTML=`Il tuo Punteggio è: ${playerScore}`;
+                }
+            
             }
 
             console.log(`Hai scelto la casella: ${i}`)
@@ -99,7 +115,7 @@ function general(numberInteraction,classBox){
     
     }
 }
-
+//se numero totale e minore di 
 
 //funzione generatore bombe
 
