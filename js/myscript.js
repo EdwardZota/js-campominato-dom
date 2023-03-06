@@ -11,6 +11,8 @@ let pointCounter = document.getElementById('pointCounter');
 
 let playerScore=0;
 
+let disableButton = false;
+
 
 let numberInteraction;
 
@@ -33,6 +35,7 @@ let allBomb;
 
 play.addEventListener('click', function(){
     title.classList.add('d-none');
+    containerDom.classList.remove('d-none');
 
     containerDom.innerHTML="";
     bombArray=[];
@@ -92,33 +95,50 @@ function general(numberInteraction,classBox){
         currentSquare.append(i);
     
         currentSquare.addEventListener('click', function() {
+            if(disableButton == false){
 
-            if(bombArray.includes(i)){
-                this.classList.add('red');
-                pointCounter.innerHTML=`Partita conclusa con un punteggio di ${playerScore} punti!`;
-                
-            }else{
-                this.classList.add('cyan');
-                playerScore++;
-
-                if(playerScore == (numberInteraction - bombCounter)){
-                    pointCounter.innerHTML=`Complimenti! Hai vinto con il punteggio massimo in questa modalità con ${playerScore} punti!`;
-                
+                if(bombArray.includes(i)){
+                    this.classList.add('red');
+                    pointCounter.innerHTML=`Partita conclusa con un punteggio di ${playerScore} punti!`;
+                    disableButton=true;
+                    for( let i = 1; i <= numberInteraction; i++){
+                        let doRed = document.querySelector(`.box:nth-of-type(${i})`);
+                        if(bombArray.includes(i)){
+                            doRed.classList.add('red');
+                        }
+                    }
                 }else{
-                    pointCounter.innerHTML=`Il tuo Punteggio è: ${playerScore}`;
+                    this.classList.add('cyan');
+                    playerScore++;
+    
+                    if(playerScore == (numberInteraction - bombCounter)){
+                        pointCounter.innerHTML=`Complimenti! Hai vinto con il punteggio massimo in questa modalità con ${playerScore} punti!`;
+                        disableButton=true;
+                    }else{
+                        pointCounter.innerHTML=`Il tuo Punteggio è: ${playerScore}`;
+                    }
+                
                 }
-            
-            }
 
+            }
+            
             console.log(`Hai scelto la casella: ${i}`);
         }
         )
+
     
         containerDom.append(currentSquare);
     
     }
+    
+
+
 }
-//se numero totale e minore di 
+
+
+
+//funzione per mostrare tutte le bombe
+
 
 //funzione generatore bombe
 

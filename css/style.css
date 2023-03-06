@@ -67,8 +67,8 @@ main span{
 }
 
 .container{
-    width: 650px;
-    height: 650px;
+    width: 600px;
+    height: 600px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
